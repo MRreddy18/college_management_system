@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Add Faculty</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+
+        <div class="brand">🎓 CollegeMS</div>
+
+        <nav>
+
+            <a href="{{ url_for('dashboard') }}">
+                🏠 Dashboard
+            </a>
+
+            <a href="{{ url_for('students') }}">
+                👨‍🎓 Students
+            </a>
+
+            <a href="{{ url_for('faculty') }}" class="active">
+                👨‍🏫 Faculty
+            </a>
+
+            <a href="{{ url_for('attendance') }}">
+                📋 Attendance
+            </a>
+
+            <a href="{{ url_for('fees') }}">
+                💰 Fees
+            </a>
+
+            <a href="{{ url_for('announcements') }}">
+                📢 Announcements
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <div class="form-container">
+
+            <h2>Add New Faculty</h2>
+
+            <form method="POST">
+
+                <label>Faculty Name</label>
+
+                <input type="text"
+                       name="name"
+                       placeholder="Enter faculty name"
+                       required>
+
+
+                <label>Email</label>
+
+                <input type="email"
+                       name="email"
+                       placeholder="Enter email"
+                       required>
+
+
+                <label>Phone</label>
+
+                <input type="text"
+                       name="phone"
+                       placeholder="Enter phone"
+                       required>
+
+
+                <label>Department</label>
+
+                <input type="text"
+                       name="department"
+                       placeholder="Example: Computer Science"
+                       required>
+
+
+                <label>Designation</label>
+
+                <select name="designation" required>
+
+                    <option value="">Select Designation</option>
+
+                    <option>Professor</option>
+
+                    <option>Associate Professor</option>
+
+                    <option>Assistant Professor</option>
+
+                    <option>Lecturer</option>
+
+                </select>
+
+
+                <div class="form-buttons">
+
+                    <button class="btn" type="submit">
+                        Add Faculty
+                    </button>
+
+                    <a href="{{ url_for('faculty') }}"
+                       class="cancel-btn">
+                        Cancel
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

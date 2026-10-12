@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - College Management</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            🎓 CollegeMS
+        </div>
+
+        <nav>
+
+            <a href="{{ url_for('dashboard') }}" class="active">
+                🏠 Dashboard
+            </a>
+
+            <a href="{{ url_for('students') }}">
+                👨‍🎓 Students
+            </a>
+
+            <a href="{{ url_for('faculty') }}">
+                👨‍🏫 Faculty
+            </a>
+
+            <a href="{{ url_for('attendance') }}">
+                📋 Attendance
+            </a>
+
+            <a href="{{ url_for('fees') }}">
+                💰 Fees
+            </a>
+
+            <a href="{{ url_for('announcements') }}">
+                📢 Announcements
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+                🚪 Logout
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h2>Dashboard</h2>
+                <p>Welcome to College Management System</p>
+            </div>
+
+            <div class="user">
+                👤 {{ session['username'] }}
+            </div>
+
+        </header>
+
+
+        <section class="dashboard">
+
+            <div class="card">
+                <div class="card-icon">👨‍🎓</div>
+                <div>
+                    <h3>{{ students }}</h3>
+                    <p>Total Students</p>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="card-icon">👨‍🏫</div>
+                <div>
+                    <h3>{{ faculty }}</h3>
+                    <p>Total Faculty</p>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="card-icon">📢</div>
+                <div>
+                    <h3>{{ announcements }}</h3>
+                    <p>Announcements</p>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="card-icon">💰</div>
+                <div>
+                    <h3>{{ fees_pending }}</h3>
+                    <p>Pending Fees</p>
+                </div>
+            </div>
+
+        </section>
+
+
+        <section class="welcome-section">
+
+            <h2>College Administration</h2>
+
+            <p>
+                Manage students, faculty, attendance, fees and
+                announcements from one centralized system.
+            </p>
+
+        </section>
+
+
+        <section class="quick-actions">
+
+            <h2>Quick Actions</h2>
+
+            <div class="action-grid">
+
+                <a href="{{ url_for('add_student') }}"
+                   class="action-card">
+                    ➕
+                    <span>Add Student</span>
+                </a>
+
+                <a href="{{ url_for('add_faculty') }}"
+                   class="action-card">
+                    👨‍🏫
+                    <span>Add Faculty</span>
+                </a>
+
+                <a href="{{ url_for('attendance') }}"
+                   class="action-card">
+                    📋
+                    <span>Attendance</span>
+                </a>
+
+                <a href="{{ url_for('fees') }}"
+                   class="action-card">
+                    💰
+                    <span>Manage Fees</span>
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

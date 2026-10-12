@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Attendance</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+
+        <div class="brand">🎓 CollegeMS</div>
+
+        <nav>
+
+            <a href="{{ url_for('dashboard') }}">🏠 Dashboard</a>
+
+            <a href="{{ url_for('students') }}">👨‍🎓 Students</a>
+
+            <a href="{{ url_for('faculty') }}">👨‍🏫 Faculty</a>
+
+            <a href="{{ url_for('attendance') }}" class="active">
+                📋 Attendance
+            </a>
+
+            <a href="{{ url_for('fees') }}">💰 Fees</a>
+
+            <a href="{{ url_for('announcements') }}">
+                📢 Announcements
+            </a>
+
+            <a href="{{ url_for('logout') }}">🚪 Logout</a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h2>Attendance Management</h2>
+                <p>Mark and view student attendance</p>
+            </div>
+
+        </header>
+
+
+        <div class="form-container">
+
+            <h2>Mark Attendance</h2>
+
+            <form method="POST"
+                  action="{{ url_for('add_attendance') }}">
+
+                <label>Student</label>
+
+                <select name="student_id" required>
+
+                    <option value="">
+                        Select Student
+                    </option>
+
+                    {% for student in students %}
+
+                    <option value="{{ student['id'] }}">
+                        {{ student['name'] }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+
+                <label>Date</label>
+
+                <input type="date"
+                       name="date"
+                       required>
+
+
+                <label>Status</label>
+
+                <select name="status" required>
+
+                    <option value="Present">
+                        Present
+                    </option>
+
+                    <option value="Absent">
+                        Absent
+                    </option>
+
+                </select>
+
+
+                <button class="btn" type="submit">
+                    Save Attendance
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <h2>Attendance Records</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Student</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for record in attendance %}
+
+                    <tr>
+
+                        <td>{{ record['id'] }}</td>
+
+                        <td>{{ record['name'] }}</td>
+
+                        <td>{{ record['date'] }}</td>
+
+                        <td>
+
+                            {% if record['status'] == 'Present' %}
+
+                                <span class="status present">
+                                    Present
+                                </span>
+
+                            {% else %}
+
+                                <span class="status absent">
+                                    Absent
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                {% else %}
+
+                    <tr>
+                        <td colspan="4" class="empty">
+                            No attendance records.
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

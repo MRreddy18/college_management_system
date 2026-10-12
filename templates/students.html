@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Students</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+
+        <div class="brand">🎓 CollegeMS</div>
+
+        <nav>
+
+            <a href="{{ url_for('dashboard') }}">
+                🏠 Dashboard
+            </a>
+
+            <a href="{{ url_for('students') }}" class="active">
+                👨‍🎓 Students
+            </a>
+
+            <a href="{{ url_for('faculty') }}">
+                👨‍🏫 Faculty
+            </a>
+
+            <a href="{{ url_for('attendance') }}">
+                📋 Attendance
+            </a>
+
+            <a href="{{ url_for('fees') }}">
+                💰 Fees
+            </a>
+
+            <a href="{{ url_for('announcements') }}">
+                📢 Announcements
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+                🚪 Logout
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h2>Student Management</h2>
+                <p>Manage college students</p>
+            </div>
+
+            <a href="{{ url_for('add_student') }}"
+               class="btn">
+                + Add Student
+            </a>
+
+        </header>
+
+
+        <div class="search-box">
+
+            <form method="GET">
+
+                <input type="text"
+                       name="search"
+                       placeholder="Search student..."
+                       value="{{ search }}">
+
+                <button class="btn" type="submit">
+                    Search
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Course</th>
+                        <th>Department</th>
+                        <th>Year</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for student in students %}
+
+                    <tr>
+
+                        <td>{{ student['id'] }}</td>
+
+                        <td>
+                            <strong>
+                                {{ student['name'] }}
+                            </strong>
+                        </td>
+
+                        <td>{{ student['email'] }}</td>
+
+                        <td>{{ student['phone'] }}</td>
+
+                        <td>{{ student['course'] }}</td>
+
+                        <td>{{ student['department'] }}</td>
+
+                        <td>{{ student['year'] }}</td>
+
+                        <td>
+
+                            <a class="delete-btn"
+                               href="{{ url_for('delete_student', id=student['id']) }}"
+                               onclick="return confirmDelete()">
+                                Delete
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                {% else %}
+
+                    <tr>
+                        <td colspan="8" class="empty">
+                            No students found.
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

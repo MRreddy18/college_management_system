@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Announcements</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+
+        <div class="brand">🎓 CollegeMS</div>
+
+        <nav>
+
+            <a href="{{ url_for('dashboard') }}">🏠 Dashboard</a>
+
+            <a href="{{ url_for('students') }}">👨‍🎓 Students</a>
+
+            <a href="{{ url_for('faculty') }}">👨‍🏫 Faculty</a>
+
+            <a href="{{ url_for('attendance') }}">📋 Attendance</a>
+
+            <a href="{{ url_for('fees') }}">💰 Fees</a>
+
+            <a href="{{ url_for('announcements') }}" class="active">
+                📢 Announcements
+            </a>
+
+            <a href="{{ url_for('logout') }}">🚪 Logout</a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h2>Announcements</h2>
+                <p>College notices and announcements</p>
+            </div>
+
+        </header>
+
+
+        <div class="form-container">
+
+            <h2>Create Announcement</h2>
+
+            <form method="POST"
+                  action="{{ url_for('add_announcement') }}">
+
+                <label>Title</label>
+
+                <input type="text"
+                       name="title"
+                       placeholder="Announcement title"
+                       required>
+
+
+                <label>Message</label>
+
+                <textarea name="message"
+                          rows="5"
+                          placeholder="Write announcement..."
+                          required></textarea>
+
+
+                <label>Date</label>
+
+                <input type="date"
+                       name="date"
+                       required>
+
+
+                <button class="btn" type="submit">
+                    Publish Announcement
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <div class="announcement-list">
+
+            <h2>Recent Announcements</h2>
+
+            {% for announcement in announcements %}
+
+            <div class="announcement-card">
+
+                <div class="announcement-icon">
+                    📢
+                </div>
+
+                <div>
+
+                    <h3>
+                        {{ announcement['title'] }}
+                    </h3>
+
+                    <p>
+                        {{ announcement['message'] }}
+                    </p>
+
+                    <small>
+                        📅 {{ announcement['date'] }}
+                    </small>
+
+                </div>
+
+            </div>
+
+            {% else %}
+
+            <div class="empty">
+                No announcements available.
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

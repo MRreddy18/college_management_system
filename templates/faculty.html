@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Faculty</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+
+        <div class="brand">🎓 CollegeMS</div>
+
+        <nav>
+
+            <a href="{{ url_for('dashboard') }}">
+                🏠 Dashboard
+            </a>
+
+            <a href="{{ url_for('students') }}">
+                👨‍🎓 Students
+            </a>
+
+            <a href="{{ url_for('faculty') }}" class="active">
+                👨‍🏫 Faculty
+            </a>
+
+            <a href="{{ url_for('attendance') }}">
+                📋 Attendance
+            </a>
+
+            <a href="{{ url_for('fees') }}">
+                💰 Fees
+            </a>
+
+            <a href="{{ url_for('announcements') }}">
+                📢 Announcements
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+                🚪 Logout
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h2>Faculty Management</h2>
+                <p>Manage college faculty</p>
+            </div>
+
+            <a href="{{ url_for('add_faculty') }}"
+               class="btn">
+                + Add Faculty
+            </a>
+
+        </header>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Department</th>
+                        <th>Designation</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for member in faculty %}
+
+                    <tr>
+
+                        <td>{{ member['id'] }}</td>
+
+                        <td>
+                            <strong>
+                                {{ member['name'] }}
+                            </strong>
+                        </td>
+
+                        <td>{{ member['email'] }}</td>
+
+                        <td>{{ member['phone'] }}</td>
+
+                        <td>{{ member['department'] }}</td>
+
+                        <td>{{ member['designation'] }}</td>
+
+                        <td>
+
+                            <a class="delete-btn"
+                               href="{{ url_for('delete_faculty', id=member['id']) }}"
+                               onclick="return confirmDelete()">
+                                Delete
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                {% else %}
+
+                    <tr>
+                        <td colspan="7" class="empty">
+                            No faculty found.
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

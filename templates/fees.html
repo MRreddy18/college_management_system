@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Fees Management</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+
+        <div class="brand">🎓 CollegeMS</div>
+
+        <nav>
+
+            <a href="{{ url_for('dashboard') }}">🏠 Dashboard</a>
+
+            <a href="{{ url_for('students') }}">👨‍🎓 Students</a>
+
+            <a href="{{ url_for('faculty') }}">👨‍🏫 Faculty</a>
+
+            <a href="{{ url_for('attendance') }}">📋 Attendance</a>
+
+            <a href="{{ url_for('fees') }}" class="active">
+                💰 Fees
+            </a>
+
+            <a href="{{ url_for('announcements') }}">
+                📢 Announcements
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+                🚪 Logout
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h2>Fee Management</h2>
+                <p>Manage student fee records</p>
+            </div>
+
+        </header>
+
+
+        <div class="form-container">
+
+            <h2>Add Fee Record</h2>
+
+            <form method="POST"
+                  action="{{ url_for('add_fee') }}">
+
+                <label>Student</label>
+
+                <select name="student_id" required>
+
+                    <option value="">
+                        Select Student
+                    </option>
+
+                    {% for student in students %}
+
+                    <option value="{{ student['id'] }}">
+                        {{ student['name'] }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+
+                <label>Amount</label>
+
+                <input type="number"
+                       name="amount"
+                       placeholder="Enter amount"
+                       required>
+
+
+                <label>Status</label>
+
+                <select name="status">
+
+                    <option value="Paid">
+                        Paid
+                    </option>
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                </select>
+
+
+                <label>Date</label>
+
+                <input type="date"
+                       name="date"
+                       required>
+
+
+                <button class="btn" type="submit">
+                    Save Fee
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <h2>Fee Records</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Student</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for fee in fees %}
+
+                    <tr>
+
+                        <td>{{ fee['id'] }}</td>
+
+                        <td>{{ fee['name'] }}</td>
+
+                        <td>
+                            ₹{{ fee['amount'] }}
+                        </td>
+
+                        <td>
+
+                            {% if fee['status'] == 'Paid' %}
+
+                            <span class="status present">
+                                Paid
+                            </span>
+
+                            {% else %}
+
+                            <span class="status absent">
+                                Pending
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>{{ fee['date'] }}</td>
+
+                    </tr>
+
+                {% else %}
+
+                    <tr>
+                        <td colspan="5" class="empty">
+                            No fee records.
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>
