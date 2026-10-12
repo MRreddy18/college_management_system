@@ -519,10 +519,5 @@ def add_announcement():
 
 # ---------------- START APPLICATION ----------------
 
-if __name__ == "__main__":
-
-    init_db()
-
-    app.run(
-        debug=True
-    )
+init_db()
+if name=="main":app.run(debug=True)
