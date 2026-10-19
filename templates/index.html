@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BGS Science Academy | Official Website</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #263448;
+            background: #f7f8fb;
+        }
+
+        header {
+            background: #102d52;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .brand h1 {
+            font-size: 25px;
+        }
+
+        .brand p {
+            font-size: 13px;
+            color: #dbe8f8;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ffd166;
+        }
+
+        .login-btn {
+            background: #e4ad3b;
+            color: #102d52 !important;
+            padding: 9px 17px;
+            border-radius: 4px;
+        }
+
+        .hero {
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            padding: 60px 8%;
+            color: white;
+            background:
+                linear-gradient(90deg, rgba(8, 32, 61, .94),
+                rgba(8, 32, 61, .42)),
+                url("https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1600&q=85")
+                center/cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background: #e4ad3b;
+            color: #102d52;
+            padding: 12px 22px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 55px 8%;
+            scroll-margin-top: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #102d52;
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .section-intro {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 30px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+            margin-top: 28px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border: 1px solid #e1e6ee;
+            border-top: 4px solid #c99a35;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .04);
+        }
+
+        .card h3 {
+            color: #102d52;
+            margin-bottom: 10px;
+        }
+
+        #about {
+            background: white;
+        }
+
+        #contact {
+            background: #eaf0f7;
+            text-align: center;
+        }
+
+        footer {
+            background: #102d52;
+            color: white;
+            padding: 22px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 18px 5%;
+            }
+
+            nav {
+                gap: 13px;
+            }
+
+            .hero {
+                padding: 50px 6%;
+                min-height: 360px;
+            }
+
+            section {
+                padding: 40px 6%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="brand">
+        <h1>BGS Science Academy</h1>
+        <p>Education • Knowledge • Excellence</p>
+    </div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#courses">Courses</a>
+        <a href="#facilities">Facilities</a>
+        <a href="#contact">Contact</a>
+        <a class="login-btn" href="{{ url_for('login') }}">Login</a>
+    </nav>
+</header>
+
+<main>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Welcome to BGS Science Academy</h2>
+            <p>
+                A place to learn, grow and build a brighter future
+                through knowledge and education.
+            </p>
+            <a class="hero-btn" href="#about">Explore Our College</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">About Our College</h2>
+        <p class="section-intro">
+            BGS Science Academy is located in Agalagurki Village,
+            Chikkaballapur Taluk and District, Karnataka.
+            Our goal is to support learning, develop skills and
+            encourage students to prepare for their future.
+        </p>
+
+        <div class="cards">
+            <article class="card">
+                <h3>Our Vision</h3>
+                <p>To encourage students to pursue knowledge,
+                   develop their abilities and aim for excellence.</p>
+            </article>
+
+            <article class="card">
+                <h3>Our Mission</h3>
+                <p>To promote learning, discipline, creativity
+                   and responsible citizenship.</p>
+            </article>
+
+            <article class="card">
+                <h3>Our Community</h3>
+                <p>To create a positive learning environment
+                   for students, teachers and staff.</p>
+            </article>
+        </div>
+    </section>
+
+    <section id="courses">
+        <h2 class="section-title">Courses & Departments</h2>
+        <p class="section-intro">
+            Explore educational opportunities and academic departments.
+        </p>
+
+        <div class="cards">
+            <article class="card">
+                <h3>Science</h3>
+                <p>Learning through scientific concepts and practical skills.</p>
+            </article>
+
+            <article class="card">
+                <h3>Computer Studies</h3>
+                <p>Building computer knowledge and digital skills.</p>
+            </article>
+
+            <article class="card">
+                <h3>Other Programmes</h3>
+                <p>Please contact the college for verified course details.</p>
+            </article>
+        </div>
+    </section>
+
+    <section id="facilities">
+        <h2 class="section-title">Facilities</h2>
+        <div class="cards">
+            <article class="card">
+                <h3>Library</h3>
+                <p>A space for reading, study and academic resources.</p>
+            </article>
+
+            <article class="card">
+                <h3>Computer Lab</h3>
+                <p>Technology learning and computer practice.</p>
+            </article>
+
+            <article class="card">
+                <h3>Student Support</h3>
+                <p>Academic guidance and student development.</p>
+            </article>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <p><strong>College:</strong> BGS Science Academy</p>
+        <p><strong>Address:</strong> Agalagurki Village,
+           Chikkaballapur Taluk and District, Karnataka.</p>
+        <p>Please add the college's verified phone number and email here.</p>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 BGS Science Academy. All rights reserved.</p>
+    <p>College Management & Administration System</p>
+</footer>
+
+</body>
+</html>
